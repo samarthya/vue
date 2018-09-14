@@ -7,6 +7,7 @@
   </div>
 </template>
 
+<!-- Vue script section -->
 <script>
 function getPreviousValidIndex(index, length) {
   const deprecatedIndex = index - 1;
@@ -19,7 +20,20 @@ function getNextValidIndex(index, length) {
 }
 
 export default {
-  props: ['parts', 'position'],
+  props: {
+    parts: { /** Validation */
+      type: Array,
+      required: true,
+    },
+    position: {
+      type: String,
+      reqired: true,
+      /** Validator function */
+      validator(value) {
+        return ['left', 'right', 'bottom', 'center'].includes(value);
+      },
+    },
+  },
   data() {
     return {
       selectedPartIndex: 0,
