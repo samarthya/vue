@@ -21,7 +21,8 @@ function getNextValidIndex(index, length) {
 
 export default {
   props: {
-    parts: { /** Validation */
+    /** Validation */
+    parts: {
       type: Array,
       required: true,
     },
@@ -30,7 +31,7 @@ export default {
       reqired: true,
       /** Validator function */
       validator(value) {
-        return ['left', 'right', 'bottom', 'center'].includes(value);
+        return ['left', 'right', 'bottom', 'center', 'top'].includes(value);
       },
     },
   },
@@ -39,12 +40,22 @@ export default {
       selectedPartIndex: 0,
     };
   },
+  created() {
+    this.emitSelectedPart();
+  },
+  updated() {
+    this.emitSelectedPart();
+  },
   computed: {
     selectedPart() {
       return this.parts[this.selectedPartIndex];
     },
   },
   methods: {
+    emitSelectedPart() {
+      console.log(' Emit: Parts Selected');
+      this.$emit('partSelected', this.selectedPart);
+    },
     selectNextPart() {
       this.selectedPartIndex = getNextValidIndex(
         this.selectedPartIndex,
