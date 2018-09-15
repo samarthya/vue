@@ -52,23 +52,6 @@
         :parts="availableParts.bases"
         v-on:partSelected="part => selectedRobot.bases=part"/>
     </div>
-    <div>
-      <h1>Cart</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Robot</th>
-            <th class="cost">Cost</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(robot, index) in cart" :key="index">
-            <td>{{ robot.heads.title }}</td>
-            <td class="cpst">{{ robot.cost}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
   </div>
 
 </template>
@@ -97,7 +80,6 @@ export default {
     return {
       availableParts,
       addedToCart: false,
-      cart: [],
       selectedRobot: {
         heads: {},
         torsos: {},
@@ -120,9 +102,8 @@ export default {
           robot.rightArm.cost +
           robot.bases.cost +
           robot.torsos.cost;
-
-      this.cart.push(Object.assign({}, robot, { cost }));
-      this.addedToCart = (this.cart.length > 0);
+      this.$store.commit('addRobotToCart', Object.assign({}, robot, { cost }));
+      this.addedToCart = true;
     },
   },
 };
@@ -242,14 +223,6 @@ export default {
   width: 210px;
   padding: 3px;
   font-size: 16px;
-}
-td, th {
-  text-align: left;
-  padding: 5px;
-  padding-right: 20px;
-}
-.cost {
-  text-align: right;
 }
 .preview {
   position: absolute;
