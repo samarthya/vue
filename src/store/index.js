@@ -30,10 +30,11 @@ export default new Vuex.Store({
   actions: {
     /**
      * Fetch the parts from the remote service.
-     * @param {*} param0 
+     * @param {*} commit - to call the state commit.
      */
     getParts({ commit }) {
-      axios.get('/api/parts')
+      /** Use axios to make the HTTP call. */
+      axios.get('/api/parts') /** Configured Web Proxy. */
         .then(result => commit('updateParts', result.data))
         .catch(console.log);
     },
