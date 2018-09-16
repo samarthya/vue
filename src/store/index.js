@@ -22,4 +22,9 @@ export default new Vuex.Store({
       console.log(state);
     },
   },
+  getters: {
+    cartSaleItems(state) {
+      return state.cart.filter(item => item.heads.onSale);
+    },
+  },
 });
