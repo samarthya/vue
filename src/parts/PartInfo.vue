@@ -7,10 +7,11 @@
   </div>
 </template>
 <script>
-import parts from '../data/parts';
+import getPartsMixins from './get-parts-mixins';
 
 export default {
   name: 'PartInfo',
+  mixins: [getPartsMixins],
   props: {
     partType: {
       type: String,
@@ -29,7 +30,7 @@ export default {
       // const partType = this.$router.partType;
       // const partID = this.$router.id;
       const { partType, id } = this;
-      return parts[partType].find(part => part.id === +id);
+      return this.parts[partType].find(part => part.id === +id);
     },
   },
 };

@@ -1,4 +1,5 @@
 # build-abot
+It is my attempt to learn VUEJS I am following a tutorial in Pluralsight.
 
 ## Project setup
 ```
