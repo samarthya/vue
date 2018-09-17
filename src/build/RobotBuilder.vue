@@ -22,10 +22,6 @@
       <div class="robot-name">
         <!-- v-once -->
         {{ selectedRobot.heads.title }}
-        <!-- v-if removes the content. -->
-        <span v-if="selectedRobot.heads.onSale" class="sale">
-          Sale!
-        </span>
       </div>
       <!-- Binding PARTS and position -->
       <part-selector
@@ -112,7 +108,7 @@ export default {
       this.addRobotToCart(Object.assign({}, robot, { cost }))
         .then(() => this.$router.push('/cart'));
       // this.$store
-      //   .dispatch('robots/addRobotToCart', Object.assign({}, robot, { cost })) 
+      //   .dispatch('robots/addRobotToCart', Object.assign({}, robot, { cost }));
       this.addedToCart = true;
     },
   },
