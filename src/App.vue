@@ -66,9 +66,7 @@ export default {
       return this.$store.state.robots.cart;
     },
     ...mapState({ rootFoo: 'foo' }),
-    robotsFoo() {
-      return this.$store.state.robots.foo;
-    },
+    ...mapState('robots', { robotsFoo: 'foo' }),
     usersFoo() {
       return this.$store.state.users.foo;
     },
