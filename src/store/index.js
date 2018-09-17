@@ -1,47 +1,32 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import axios from 'axios';
+import robotModule from './modules/robots';
+import userModule from './modules/users';
 
 /**  Tell Vue to use VUEX */
 Vue.use(Vuex);
-
+/**
+ * +--------------------+
+ * + Shared state tree  + // Single object that contains all the data for your application.
+ * +                    + // First state: Defaults essentilal for change detection.
+ * + Mutations          + // Synchronous state mutation.
+ * + Actions            + // Asynchronous call and commits mutation.
+ * + Getters            + // Getters
+ * +--------------------+
+ */
 /** State changes - Detection */
 export default new Vuex.Store({
-  /**
-   * What is there in the State.
-   */
+  modules: {
+    robots: robotModule,
+    users: userModule,
+  },
+  /** Root state as it is not in the namespace module. */
   state: {
-    /**
-     * Store contains the CART.
-     */
-    cart: [], /** Default state for the property cart. */
-    parts: null,
-  },
-  mutations: { /** Mutations. */
-    /** Add the robot to the cart. */
-    addRobotToCart(state, robot) {
-      state.cart.push(robot);
-      console.log(state);
-    },
-    updateParts(state, parts) {
-      state.parts = parts;
-    },
-  },
-  actions: {
-    /**
-     * Fetch the parts from the remote service.
-     * @param {*} commit - to call the state commit.
-     */
-    getParts({ commit }) {
-      /** Use axios to make the HTTP call. */
-      axios.get('/api/parts') /** Configured Web Proxy. */
-        .then(result => commit('updateParts', result.data))
-        .catch(console.log);
-    },
+    foo: 'root-foo',
   },
   getters: {
-    cartSaleItems(state) {
-      return state.cart.filter(item => item.heads.onSale);
-    },
+    // foo(state) {
+    //   return `rootGetter/${state.foo}`;
+    // },
   },
 });
