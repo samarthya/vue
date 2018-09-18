@@ -18,7 +18,7 @@
             {{ robot.heads.title }}
           </td>
           <td class="cost">
-            {{ robot.cost }}
+            {{ robot.cost | currency('$') }}
           </td>
         </tr>
       </tbody>
@@ -41,7 +41,7 @@
             {{ robot.heads.title }}
           </td>
           <td class="cost">
-            {{ robot.cost }}
+            {{ robot.cost | currency('$') }}
           </td>
         </tr>
       </tbody>
@@ -50,11 +50,16 @@
 </template>
 
 <script>
+import currencyFilter from '../shared/currency-filter';
+
 /**
  * Shopping cart VUE component.
  */
 export default {
   name: 'Cart',
+  filters: {
+    currency: currencyFilter,
+  },
   computed: {
     cart() {
       /** Access the cart from stae. */

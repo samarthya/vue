@@ -3,8 +3,10 @@ import App from './App.vue';
 
 import router from './router';
 import store from './store'; /** Import Store from the definition. */
+import pinDirectice from './shared/pin-directive';
 
 Vue.config.productionTip = false;
+Vue.directive('pin', pinDirectice); /** Global Directive */
 
 /**
  * A new VUE instance to render APP.
