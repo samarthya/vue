@@ -7,9 +7,9 @@
             <img :src="selectedRobot.heads.src"/>
           </div>
           <div class="middle-row">
-            <img :src="selectedRobot.leftArm.src" class="rotate-left"/>
+            <img :src="selectedRobot.leftArm.src" v-rotate="{transform: '-90deg'}"/>
             <img :src="selectedRobot.torsos.src"/>
-            <img :src="selectedRobot.rightArm.src" class="rotate-right"/>
+            <img :src="selectedRobot.rightArm.src" v-rotate="{transform: '90deg'}"/>
           </div>
           <div class="bottom-row">
             <img :src="selectedRobot.bases.src"/>
@@ -54,12 +54,14 @@
 
 <script>
 import { mapActions } from 'vuex';
+import rotateDirective from '../shared/rotate-directive';
 import CollapsibleSection from '../shared/CollapsibleSection.vue';
 import PartSelector from './PartsSelector.vue';
 
 
 export default {
   name: 'RobotBuilder',
+  directives: { rotate: rotateDirective },
   created() {
     // this.$store.dispatch('robots/getParts');
     this.getParts();
