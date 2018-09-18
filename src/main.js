@@ -7,7 +7,7 @@ import pinDirectice from './shared/pin-directive';
 
 Vue.config.productionTip = false;
 Vue.directive('pin', pinDirectice); /** Global Directive */
-
+//Vue.filter
 /**
  * A new VUE instance to render APP.
  */
